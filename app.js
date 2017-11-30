@@ -25,38 +25,7 @@ function createButton() {
  }
 
 
-// ============== On click function to get gifs from giphy api when button is clicked =========================
-$(".show-button").on('click', function () {
-    let showName = $(this).attr("data-show");
-    let queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + showName + "&api_key=2BRsP7hdMyRtDUKHz5GFVFy7b1utU4oC&limit=10";
-    
-    $.ajax ({
-        url: queryUrl,
-        method: "GET",
-    }).done(function (response) {
-        for (let i = 0; i < response.data.length; i++) {
-            const element = response.data[i];
-            let url = element.embed_url;
-            let still = element.images.original_still.url;
 
-            console.log(i);
-            console.log(url);
-            console.log(still);
-            let iframe = $("<iframe>");
-            iframe.attr("src", url);
-            // iframe.attr("class", "gif");
-
-            // iframe.attr("data-animate", url);
-            // iframe.attr("data-still", still);
-            // iframe.attr("data-state", "still");
-
-            $("#results").append(iframe);
-        }
-        console.log(response);
-    })
-
-
- })
 
 //  ===================== Get gif for dynamically created buttons ==================================
 $('body').on('click', '.show-button', function(){
@@ -69,21 +38,21 @@ $('body').on('click', '.show-button', function(){
     }).done(function (response) {
         for (let i = 0; i < response.data.length; i++) {
             const element = response.data[i];
-            let url = element.embed_url;
+            let url = element.images.fixed_height.url;
             let still = element.images.original_still.url;
 
             console.log(i);
             console.log(url);
             console.log(still);
-            let iframe = $("<iframe>");
-            iframe.attr("src", url);
-            // iframe.attr("class", "gif");
+            let img = $("<img>");
+            img.attr("src", url);
+            // img.attr("class", "gif");
 
-            // iframe.attr("data-animate", url);
-            // iframe.attr("data-still", still);
-            // iframe.attr("data-state", "still");
+            // img.attr("data-animate", url);
+            // img.attr("data-still", still);
+            // img.attr("data-state", "still");
 
-            $("#results").append(iframe);
+            $("#results").append(img);
         }
         console.log(response);
     })
