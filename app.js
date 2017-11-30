@@ -45,15 +45,38 @@ $('body').on('click', '.show-button', function(){
             console.log(url);
             console.log(still);
             let img = $("<img>");
-            img.attr("src", url);
-            // img.attr("class", "gif");
+            img.attr("src", still);
+            img.attr("class", "gif");
 
-            // img.attr("data-animate", url);
-            // img.attr("data-still", still);
-            // img.attr("data-state", "still");
+            img.attr("data-animate", url);
+            img.attr("data-still", still);
+            img.attr("data-state", "still");
 
             $("#results").append(img);
         }
         console.log(response);
     })
 });
+
+$('body').on('click', '.gif', function (param) { 
+    let state = $(this).attr('data-state');
+    let img = $(this);
+    // =============================================
+
+    // Check if the variable state is equal to 'still',
+    // then update the src attribute of this image to it's data-animate value,
+    // and update the data-state attribute to 'animate'.
+
+    // If state is equal to 'animate', then update the src attribute of this
+    // image to it's data-still value and update the data-state attribute to 'still'
+
+    console.log(state);
+    // CODE GOES HERE
+    if (state === 'still') {
+      img.attr("src", img.attr("data-animate"));
+      img.attr("data-state", "animate");
+    } else {
+      img.attr("src", img.attr("data-still"));
+      img.attr("data-state", "still");
+    }
+ });
