@@ -1,2 +1,2 @@
 # giftastic
-using giphy api and ajx
+using giphy api and ajax
